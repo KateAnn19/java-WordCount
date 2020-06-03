@@ -25,18 +25,44 @@ public class Main {
         // wordsHashMap.forEach((k, v) -> System.out.println(k + "-" + v));
         // to sort we make an array list
         List<HashMap.Entry> sortedHashList = new ArrayList<>(wordsHashMap.entrySet());
-        sortedHashList.sort(Comparator.comparing(o -> (int) o.getValue(), Comparator.reverseOrder()));
+        sortedHashList.sort(Comparator.comparing(o -> (Integer) o.getValue(), Comparator.reverseOrder()));
 
         int k = 0;
-        while (k < 51)
-        {
+        
+        for (HashMap.Entry e : sortedHashList) {
+            System.out.print("Common Word " + "<"+ e.getKey() + ">" + " occurs " + e.getValue()+ " times " + "\n");
             k++;
-            for (HashMap.Entry e : sortedHashList) {
-                System.out.print("<"+ e.getKey() + ">" + ":" + "<"+ e.getValue()+ ">" + "\n");
+            if(k == 50){
+                break;
             }
-            
+                
         }
-       
+
+        System.out.println("*******************************************");
+            
+        List<HashMap.Entry> sortByAlph = new ArrayList<>(wordsHashMap.entrySet());
+
+        sortByAlph.sort(Comparator.comparing(o -> ((String)o.getKey())));
+
+
+
+        int y = 0;
+
+        for (HashMap.Entry e : sortByAlph) {
+            System.out.print("Common Word " + "<"+ e.getKey() + ">" + " occurs " + e.getValue()+ " times " + "\n");
+            y++;
+            if(y == 50){
+                break;
+            }
+                
+        }
 
     }
 }
+
+// compiling code:
+// inside src
+// javac loopingandcollections/*.java (compile)
+// jar cvfe loopingandcollections.jar loopingandcollections.Main
+// loopingandcollections/*.class (make an archive)
+// java -jar loopingandcollections.jar (run it)
